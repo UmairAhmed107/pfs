@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Two-Year Placement Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0c1a29;
+    --ink-deep:#081320;
+    --ink-raised:#102236;
+    --grid-line: rgba(124,166,201,0.10);
+    --paper:#ece4d3;
+    --paper-dim:#8298ad;
+    --hair:#1d3450;
+    --ai:#a78bfa;
+    --cloud:#56c2de;
+    --system:#e8a23d;
+    --trunk:#c7d4de;
+    --max-w: 1040px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 36px 36px;
+    color:var(--paper);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--max-w); margin:0 auto; padding:0 24px;}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:72px 0 24px;}
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    margin:0 0 18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:8px; height:8px;
+    background:var(--ai);
+    border-radius:50%;
+    display:inline-block;
+    box-shadow:0 0 10px var(--ai);
+  }
+  h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:clamp(32px, 5vw, 52px);
+    line-height:1.08;
+    margin:0 0 20px;
+    letter-spacing:-0.01em;
+  }
+  .hero p.lede{
+    font-size:18px;
+    color:var(--paper-dim);
+    max-width:620px;
+    margin:0;
+  }
+
+  /* ---------- Diagram ---------- */
+  .diagram-section{padding:40px 0 8px;}
+  .diagram-card{
+    background:var(--ink-deep);
+    border:1px solid var(--hair);
+    border-radius:14px;
+    padding:8px 8px 0;
+    overflow:hidden;
+  }
+  svg{display:block; width:100%; height:auto;}
+  .branch-path{
+    fill:none;
+    stroke-width:2.5;
+    transition:opacity 0.4s ease, stroke-width 0.4s ease;
+  }
+  .branch-path.active{stroke-width:3.5;}
+  .node circle{transition:opacity 0.4s ease, r 0.4s ease;}
+  .node text{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    fill:var(--paper-dim);
+    transition:opacity 0.4s ease, fill 0.4s ease;
+  }
+  .node.active text{fill:var(--paper);}
+  .node-label-strong{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:15px;
+  }
+  .dim{opacity:0.28;}
+  .lit{opacity:1;}
+
+  /* ---------- Foundation card ---------- */
+  .foundation{padding:36px 0 0;}
+  .card{
+    background:var(--ink-raised);
+    border:1px solid var(--hair);
+    border-radius:14px;
+    padding:28px 30px;
+  }
+  .card .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--trunk);
+    margin:0 0 8px;
+  }
+  .card h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:22px;
+    margin:0 0 14px;
+    font-weight:600;
+  }
+  .card p{margin:0 0 12px; color:var(--paper); font-size:15.5px;}
+  .card p:last-child{margin-bottom:0;}
+  .card strong{color:var(--paper); font-weight:600;}
+
+  /* ---------- Tabs ---------- */
+  .tabs-section{padding:44px 0 0;}
+  .tabs-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    margin:0 0 14px;
+  }
+  .tabs{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:28px;
+  }
+  .tab-btn{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:500;
+    font-size:14.5px;
+    color:var(--paper-dim);
+    background:var(--ink-raised);
+    border:1px solid var(--hair);
+    border-radius:999px;
+    padding:11px 20px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    transition:all 0.25s ease;
+  }
+  .tab-btn .dot{width:8px; height:8px; border-radius:50%; background:var(--paper-dim); transition:all 0.25s ease;}
+  .tab-btn:hover{color:var(--paper); border-color:var(--paper-dim);}
+  .tab-btn:focus-visible{outline:2px solid var(--paper); outline-offset:2px;}
+  .tab-btn[data-track="ai"].is-active{color:var(--ai); border-color:var(--ai); background:rgba(167,139,250,0.08);}
+  .tab-btn[data-track="ai"].is-active .dot{background:var(--ai); box-shadow:0 0 8px var(--ai);}
+  .tab-btn[data-track="cloud"].is-active{color:var(--cloud); border-color:var(--cloud); background:rgba(86,194,222,0.08);}
+  .tab-btn[data-track="cloud"].is-active .dot{background:var(--cloud); box-shadow:0 0 8px var(--cloud);}
+  .tab-btn[data-track="system"].is-active{color:var(--system); border-color:var(--system); background:rgba(232,162,61,0.08);}
+  .tab-btn[data-track="system"].is-active .dot{background:var(--system); box-shadow:0 0 8px var(--system);}
+
+  /* ---------- Phase cards ---------- */
+  .phases{display:flex; flex-direction:column; gap:16px;}
+  .phase-card{
+    background:var(--ink-raised);
+    border:1px solid var(--hair);
+    border-left:3px solid var(--hair);
+    border-radius:10px;
+    padding:24px 28px;
+    transition:border-color 0.3s ease;
+  }
+  .phase-card .phase-meta{
+    display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
+    margin-bottom:10px;
+  }
+  .phase-num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--paper-dim);
+  }
+  .phase-month{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    padding:3px 9px;
+    border-radius:5px;
+    background:rgba(255,255,255,0.05);
+  }
+  .phase-card h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:18.5px;
+    margin:0 0 10px;
+    font-weight:600;
+  }
+  .phase-card p{margin:0 0 10px; font-size:15px; color:var(--paper);}
+  .phase-card p:last-child{margin-bottom:0;}
+  .phase-card p.muted{color:var(--paper-dim);}
+
+  [data-track-color="ai"] .phase-month{color:var(--ai);}
+  [data-track-color="cloud"] .phase-month{color:var(--cloud);}
+  [data-track-color="system"] .phase-month{color:var(--system);}
+  .phases.ai .phase-card{border-left-color:var(--ai);}
+  .phases.cloud .phase-card{border-left-color:var(--cloud);}
+  .phases.system .phase-card{border-left-color:var(--system);}
+
+  /* ---------- Notes ---------- */
+  .notes{padding:48px 0 80px;}
+  .notes h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:20px;
+    margin:0 0 18px;
+    font-weight:600;
+    color:var(--paper-dim);
+  }
+  .notes-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px;}
+  .note{
+    background:var(--ink-deep);
+    border:1px solid var(--hair);
+    border-radius:10px;
+    padding:20px 22px;
+  }
+  .note p{margin:0; font-size:14.5px; color:var(--paper-dim);}
+  .note p strong{color:var(--paper); font-weight:600;}
+
+  @media (max-width: 760px){
+    .notes-grid{grid-template-columns:1fr;}
+    .hero{padding:48px 0 16px;}
+    .card, .phase-card{padding:20px 20px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">Two-year campus placement plan</p>
+    <h1>One foundation.<br>Three ways to stand out.</h1>
+    <p class="lede">Python full stack and DSA stay constant for the whole two years. The differentiator skill is the one fork in the road — pick where you want to specialize once the foundation is solid.</p>
+  </header>
+
+  <section class="diagram-section">
+    <div class="diagram-card">
+      <svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram showing a shared foundation branching into three specialization tracks">
+        <!-- trunk -->
+        <line x1="450" y1="30" x2="450" y2="150" stroke="var(--trunk)" stroke-width="3"/>
+        <!-- branches -->
+        <path class="branch-path" data-branch="ai" d="M450,150 C450,210 230,200 230,300" stroke="#a78bfa"/>
+        <path class="branch-path" data-branch="system" d="M450,150 C450,230 450,240 450,300" stroke="#e8a23d"/>
+        <path class="branch-path" data-branch="cloud" d="M450,150 C450,210 670,200 670,300" stroke="#56c2de"/>
+
+        <!-- start node -->
+        <g class="node lit">
+          <circle cx="450" cy="30" r="6" fill="var(--trunk)"/>
+          <text x="465" y="34">START</text>
+        </g>
+        <!-- fork node -->
+        <g class="node lit">
+          <circle cx="450" cy="150" r="7" fill="var(--trunk)"/>
+          <text x="465" y="146">FOUNDATION COMPLETE</text>
+          <text x="465" y="162">M1 – M4</text>
+        </g>
+
+        <!-- end nodes -->
+        <g class="node" data-branch="ai">
+          <circle cx="230" cy="300" r="7" fill="#a78bfa"/>
+          <text x="230" y="328" text-anchor="middle" class="node-label-strong" fill="#a78bfa">AI / LLM</text>
+          <text x="230" y="345" text-anchor="middle">M5 – M24</text>
+        </g>
+        <g class="node" data-branch="system">
+          <circle cx="450" cy="300" r="7" fill="#e8a23d"/>
+          <text x="450" y="328" text-anchor="middle" class="node-label-strong" fill="#e8a23d">SYSTEM DESIGN</text>
+          <text x="450" y="345" text-anchor="middle">M5 – M24</text>
+        </g>
+        <g class="node" data-branch="cloud">
+          <circle cx="670" cy="300" r="7" fill="#56c2de"/>
+          <text x="670" y="328" text-anchor="middle" class="node-label-strong" fill="#56c2de">CLOUD</text>
+          <text x="670" y="345" text-anchor="middle">M5 – M24</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section class="foundation">
+    <div class="card">
+      <p class="tag">Shared · Months 1–4</p>
+      <h2>Foundation</h2>
+      <p><strong>Programming &amp; web basics:</strong> Get comfortable with Python, then HTML, CSS, and core JavaScript before touching any framework. Learn Git and GitHub properly — every project from here on lives there.</p>
+      <p><strong>DSA:</strong> Time/space complexity intuition, arrays, strings, basic searching and sorting, simple recursion. Correct mental models first, speed comes later.</p>
+      <p><strong>Web dev:</strong> Start React — components, props, state, hooks. In parallel, start Django (models, views, ORM) or FastAPI. Build two or three throwaway projects just to get the front-end/back-end connection comfortable.</p>
+      <p><strong>Aptitude:</strong> Light, regular practice — 20–30 minutes a few times a week. It compounds over two years with barely any dedicated focus later.</p>
+    </div>
+  </section>
+
+  <section class="tabs-section">
+    <p class="tabs-label">Choose a track to expand</p>
+    <div class="tabs" role="tablist" aria-label="Specialization tracks">
+      <button class="tab-btn is-active" data-track="ai" role="tab" aria-selected="true"><span class="dot"></span>AI / LLM Integration</button>
+      <button class="tab-btn" data-track="cloud" role="tab" aria-selected="false"><span class="dot"></span>Cloud</button>
+      <button class="tab-btn" data-track="system" role="tab" aria-selected="false"><span class="dot"></span>System Design</button>
+    </div>
+
+    <div class="phases ai" id="phase-container" data-track-color="ai">
+      <!-- populated by JS -->
+    </div>
+  </section>
+
+  <section class="notes">
+    <h2>Across all three tracks</h2>
+    <div class="notes-grid">
+      <div class="note"><p><strong>One isn't exclusive.</strong> Most strong candidates pick up light exposure to a second area along the way — someone deep in AI integration often learns basic cloud deployment just to ship their project.</p></div>
+      <div class="note"><p><strong>Internships outrank any single skill.</strong> If a real internship comes up in phase 3 or 4, it's usually worth prioritizing over additional self-study time.</p></div>
+      <div class="note"><p><strong>DSA stays constant.</strong> Practice a little most days for the full two years rather than cramming — it's tested almost identically regardless of which track you choose.</p></div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+const DATA = {
+  ai: [
+    {
+      month: "M5–9",
+      title: "Build Depth + Introduce AI",
+      body: [
+        "Deepen Django/FastAPI — authentication, relationships, real REST APIs. Push React into routing, state management, and form handling. DSA moves into linked lists, stacks, queues, hashing, and two-pointer/sliding-window patterns.",
+        "Learn how LLM APIs work — get hands-on with the OpenAI or Anthropic API and prompt structuring. Build a few small standalone scripts (a summarizer, a Q&A tool) before integrating anything into a full app."
+      ]
+    },
+    {
+      month: "M10–15",
+      title: "First Real Project + Specialization",
+      body: [
+        "Build your first substantial full-stack project with a real database, auth, and deployment — a content platform, booking system, or marketplace clone. DSA moves into trees, graphs, and intro DP.",
+        "Add a genuine AI feature: a chatbot using your project's own data (RAG), smart search, or AI-assisted content generation. Learn embeddings and a beginner-friendly vector database like Chroma or Pinecone. Good window for an AI-flavored internship."
+      ]
+    },
+    {
+      month: "M16–20",
+      title: "Heavy DSA + Deepen AI",
+      body: [
+        "DSA becomes daily and serious — medium-to-hard problems, working toward 300–400 over time without rushing.",
+        "Learn LangChain or LlamaIndex to structure more complex AI workflows, and get familiar with AI agents. Build your flagship project here — a deployed app with a genuinely impressive, demoable AI feature."
+      ]
+    },
+    {
+      month: "M21–24",
+      title: "Interview Readiness",
+      body: [
+        "Mock interviews (technical, HR, behavioral), resume finalized with your AI project as centerpiece, company research, and DSA retention practice.",
+        "Be ready to explain your AI feature's architecture clearly — interviewers will probe how it works, not just that it exists."
+      ]
+    }
+  ],
+  cloud: [
+    {
+      month: "M5–9",
+      title: "Build Depth + Introduce Cloud",
+      body: [
+        "Deepen Django/FastAPI and React as above. DSA moves into linked lists, stacks, queues, hashing, and sliding-window patterns.",
+        "Start cloud fundamentals: the Linux command line, then AWS basics — EC2, S3, and IAM. Learn enough to deploy something, not abstract theory."
+      ]
+    },
+    {
+      month: "M10–15",
+      title: "First Real Project + Specialization",
+      body: [
+        "Build your first substantial full-stack project — real database, authentication, a genuine use case. DSA moves into trees, graphs, and intro DP.",
+        "Deploy this project properly on the cloud instead of running it locally. Learn Docker, and set up basic CI/CD with GitHub Actions. A 'deployed and containerized' project is a strong talking point even at internship stage."
+      ]
+    },
+    {
+      month: "M16–20",
+      title: "Heavy DSA + Deepen Cloud",
+      body: [
+        "DSA intensifies to the same 300–400 problem range as the other tracks.",
+        "Go deeper: Kubernetes basics, an introduction to Terraform, and consider working toward AWS Cloud Practitioner or Solutions Architect Associate. Build your flagship project — full CI/CD, containerized, cloud-deployed."
+      ]
+    },
+    {
+      month: "M21–24",
+      title: "Interview Readiness",
+      body: [
+        "Mocks, resume polish leading with your deployed project and any certification, company research, DSA retention.",
+        "Be ready to discuss deployment decisions, not just the app's features."
+      ]
+    }
+  ],
+  system: [
+    {
+      month: "M5–9",
+      title: "Build Depth + System Design Basics",
+      body: [
+        "Same Django/FastAPI and React depth, same DSA progression — linked lists, stacks, queues, hashing, sliding window.",
+        "Start system design from the ground up: client-server architecture, how the web works end to end, database design and normalization, SQL vs NoSQL tradeoffs. Keep it example-driven — sketch how a simple chat app would be structured."
+      ]
+    },
+    {
+      month: "M10–15",
+      title: "First Real Project + Specialization",
+      body: [
+        "Build your first substantial full-stack project, same as the other tracks. DSA moves into trees, graphs, and intro DP.",
+        "Go deeper into caching, load balancing, the CAP theorem, and API rate limiting. Practice designing classic systems on paper — a URL shortener, a notification system — even without fully building them."
+      ]
+    },
+    {
+      month: "M16–20",
+      title: "Heavy DSA + Deepen System Design",
+      body: [
+        "DSA intensifies to the same 300–400 range as the other tracks.",
+        "Move into larger-scale thinking: a social feed, a ride-dispatch system, a URL shortener at scale, plus an intro to microservices and message queues. Apply a couple of these concepts to your flagship project — add caching, or split out a service."
+      ]
+    },
+    {
+      month: "M21–24",
+      title: "Interview Readiness",
+      body: [
+        "Mocks, resume polish, company research — plus dedicated system design interview practice, since these are usually a separate 30–45 minute round from DSA.",
+        "Be ready to walk through your project's architecture and explain why you made the choices you did."
+      ]
+    }
+  ]
+};
+
+const container = document.getElementById('phase-container');
+const tabs = document.querySelectorAll('.tab-btn');
+const branchPaths = document.querySelectorAll('.branch-path');
+const branchNodes = document.querySelectorAll('.node[data-branch]');
+
+function render(track){
+  container.className = 'phases ' + track;
+  container.setAttribute('data-track-color', track);
+  container.innerHTML = DATA[track].map((p, i) => `
+    <div class="phase-card">
+      <div class="phase-meta">
+        <span class="phase-num">PHASE ${i+2}</span>
+        <span class="phase-month">${p.month}</span>
+      </div>
+      <h3>${p.title}</h3>
+      ${p.body.map(t => `<p>${t}</p>`).join('')}
+    </div>
+  `).join('');
+}
+
+function setActiveTrack(track){
+  tabs.forEach(t => {
+    const isActive = t.dataset.track === track;
+    t.classList.toggle('is-active', isActive);
+    t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+  });
+  branchPaths.forEach(p => {
+    p.classList.toggle('active', p.dataset.branch === track);
+    p.classList.toggle('dim', p.dataset.branch !== track);
+    p.classList.toggle('lit', p.dataset.branch === track);
+  });
+  branchNodes.forEach(n => {
+    n.classList.toggle('active', n.dataset.branch === track);
+    n.classList.toggle('dim', n.dataset.branch !== track);
+    n.classList.toggle('lit', n.dataset.branch === track);
+  });
+  render(track);
+}
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => setActiveTrack(tab.dataset.track));
+});
+
+setActiveTrack('ai');
+</script>
+
+</body>
+</html>
